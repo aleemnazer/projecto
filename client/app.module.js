@@ -2,7 +2,8 @@
 angular.module('projecto', [
   'ui.router',
   'signUp',
-  'login'
+  'login',
+  'ngCookies',
 ])
 .config(function($locationProvider, $stateProvider) {
   var loginState = {

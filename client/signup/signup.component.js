@@ -2,7 +2,8 @@ angular.
   module('signUp').
   component('signUp', {
     templateUrl: 'signup/signup.template.html',
-    controller: function signupController($http, $scope) { 
+    controller: function signupController($http, $scope, $cookieStore) {
+      $scope.token = $cookieStore.get('token');
       $scope.signup = function() {
         $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
         url = "http://localhost:3000/signup"
