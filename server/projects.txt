@@ -1,0 +1,6 @@
+1- signup/login/logout
+2- CRUD users has many projects with roles(:user, :admin)
+3- CRDU groups by admin ( with seed data ) and groups belogns to users and projects
+4- CRUD projects - project {details} belogns to users (through groups)
+4.1 project details page: tab1-  project infor, tab2- project is accesable to users
+5- Admin will be able to create users, groups and view all project...

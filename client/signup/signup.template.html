@@ -1,0 +1,50 @@
+
+<h1>Sign Up Form</h1>
+<p>Please fill in this form to create an account.</p>
+<hr>
+<form>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-6">
+        Enter name:
+      </div>
+      <div class="col-md-6">
+        <input name = "name" type = "text" ng-model = "name" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        Enter role:
+      </div>
+      <div class="col-md-6">
+        <input name = "role" type = "text" ng-model = "role" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        Enter username:
+      </div>
+      <div class="col-md-6">
+        <input name = "username" type = "text" ng-model = "username" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        Password:
+      </div>
+      <div class="col-md-6">
+        <input name = "password" type = "password" ng-model = "password" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <button ng-click = "signup()">Submit</button> 
+      </div>
+      <div class="col-md-6">
+         {{ message && ('message: ' + message)}}
+      </div>
+    </div>
+  </div>
+</form>    

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" ng-app="projecto">
+  <head>
+    <meta charset="utf-8">
+    <title>Projecto</title>
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="app.css" />
+    <script src="lib/angular/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.20/angular-ui-router.js"></script>
+    <script src="app.module.js"></script>
+    <script src="signup/signup.module.js"></script>
+    <script src="signup/signup.component.js"></script>
+    <script src="login/login.module.js"></script>
+    <script src="login/login.component.js"></script>
+    <script src="services/login.service.js"></script>
+    <base href="/">
+  </head>
+  <body>      
+    <a ui-sref="login" ui-sref-active="active">Login</a>
+    <a ui-sref="signup" ui-sref-active="active">SignUp</a>
+    <a ui-sref="home" ui-sref-active="active">Home</a>
+    <div class="container">
+        <div class="row">
+          <div class="col-md-10">
+            <ui-view></ui-view>         
+          </div>
+        </div>
+      </div>
+  </body>
+</html>
