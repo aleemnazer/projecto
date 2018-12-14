@@ -4,7 +4,11 @@ var router = express.Router();
 var User = require('../models/user.model')
 
 router.get('/', passport.authenticate('bearer', { session: false }), function(req, res, next) {
-    User.findAll().then(user => res.send(user)).catch(err => res.send(err));
+    if (req.user.role == 'admin')
+      users = User.findAll()
+    else
+      users = User.findAll({_id: req.user.id})
+    users.then(user => res.send(user)).catch(err => next(err));
 });
 
 router.post('/', passport.authenticate('bearer', { session: false }), function(req, res, next) {

@@ -13,8 +13,8 @@ var userSchema = new Schema({
     projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }]
 })
 
-userSchema.statics.findAll = function(){
-    return this.find({}, { salt: 0, hash: 0 });
+userSchema.statics.findAll = function(query = {}){
+    return this.find(query, { salt: 0, hash: 0 });
 }
 
 userSchema.statics.createUser = function(user){
@@ -29,7 +29,7 @@ userSchema.statics.removeUser = function(id){
 }
 
 userSchema.statics.userDetails = function(id){
-    return  this.findOne({_id: id}).populate('creator').exec();
+    return  this.findOne({_id: id}).exec();
 }
 
 userSchema.statics.logout = function(id){
