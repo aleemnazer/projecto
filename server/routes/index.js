@@ -7,20 +7,36 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/signup', function(req, res, next){
+  username = req.body.username;
+  if (username == "undefined" || username == null )
+    return next('username is missing');
+
+  password = req.body.password;
+  if (password == "undefined" || password == null )
+    return next('password is missing');
+
   User.createUser(req.body).then(user => res.send({ message: "signed up successfully" })).catch(err => res.send(err));
 })
 
 router.post('/login',
   function(req, res, next) {
-    User.findOne({ username: req.body.username })
+    username = req.body.username;
+    if (username == "undefined" || username == null )
+      return next('username is missing');
+
+    password = req.body.password;
+    if (password == "undefined" || password == null )
+      return next('password is missing');
+
+    User.findOne({ username: username })
     .then(function (user) {
-      if (user == null) { return next({message: 'password not matched'});}
-      verified = user.verifyPassword(req.body.password);
-      if (!verified) { return next({message: 'password not matched'}); }
+      if (user == null) { return next('user name of password is incorrect');}
+      verified = user.verifyPassword(password);
+      if (!verified) { return next('incorrect password'); }
       user.setToken();
       res.send({message: user.getToken()});
     }).catch(function(err){
-      errs = { message: 'an error occured' + err}
+      errs = { error: 'an error occured' + err}
       res.send(errs);
     });
 });

@@ -10,7 +10,7 @@ angular.
         $http({
           url: url,
           method: "POST",
-          data: 'name='+$scope.name+'&role='+$scope.role+'&username='+$scope.username+'&password='+$scope.password
+          data: 'name='+$scope.name+'&username='+$scope.username+'&password='+$scope.password
         })
         .then(function(response) {
           $scope.message = response.data.message;

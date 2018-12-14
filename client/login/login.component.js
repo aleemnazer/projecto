@@ -1,7 +1,7 @@
 angular.module('login')
     .component('login', {
         templateUrl: 'login/login.template.html',
-        controller: function loginController($http, $scope, Auth){
+        controller: function loginController($http, $scope, Auth, $state){
             $scope.login = function(){
                 $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
                 url = "http://localhost:3000/login"
@@ -13,10 +13,10 @@ angular.module('login')
                 .then(function(response) {
                     token = response.data.message;
                     Auth.setToken(token);
-                    $scope.token = Auth.getToken();
+                    $state.go('users');
                 }, function(error){
                     Auth.setToken('');
-                    $scope.token = error.data.message;
+                    $scope.message = error.data.error;
                 });
             }
         }

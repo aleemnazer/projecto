@@ -4,28 +4,29 @@
 <form>
     <div class="form-group">
         <div class="row">
-        <div class="col-md-6">
-            Enter username:
-        </div>
-        <div class="col-md-6">
-            <input name = "username" type = "text" ng-model = "username" required>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-md-6">
-            Password:
-        </div>
-        <div class="col-md-6">
-            <input name = "password" type = "password" ng-model = "password" required>
-        </div>
+            <div class="col-md-6">
+                Enter username:
+            </div>
+            <div class="col-md-6">
+                <input name = "username" type = "text" ng-model = "username" required>
+            </div>
         </div>
         <div class="row">
-        <div class="col-md-6">
-            <button ng-click = "login()">Submit</button> 
+            <div class="col-md-6">
+                Password:
+            </div>
+            <div class="col-md-6">
+                <input name = "password" type = "password" ng-model = "password" required>
+            </div>
         </div>
-        <div class="col-md-6">
-            Token: {{token}}
-        </div>
+        <div class="row">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
+                <button ng-click = "login()">Submit</button>
+                <br>
+                {{ message && ('message:' + message) }}
+            </div>
         </div>
     </div>
 </form>
