@@ -8,8 +8,8 @@ var projectSchema = new Schema({
     creator: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 });
 
-projectSchema.statics.findAll = function(){
-    return this.find({}).populate('creator');
+projectSchema.statics.findAll = function(user){
+    return this.find({creator: user._id}).populate('creator');
 }
 
 projectSchema.statics.createProject = function(project){
@@ -31,12 +31,7 @@ projectSchema.statics.removeProject = function(id){
 }
 
 projectSchema.statics.projectDetails = function(id){
-    this.findOne({ _id: id }).
-    populate('creator').
-    exec(function (err, project) {
-        if (err) return handleError(err);
-        return project
-    });
+    return this.findOne({ _id: id }).populate('creator').exec();
 }
 
 projectSchema.statics.updateProject = function(id, params){

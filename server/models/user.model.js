@@ -29,9 +29,7 @@ userSchema.statics.removeUser = function(id){
 }
 
 userSchema.statics.userDetails = function(id){
-    return  this.findById(id, function (err, user) {
-        return user
-    });
+    return  this.findOne({_id: id}).populate('creator').exec();
 }
 
 userSchema.statics.updateUser = function(id, params){
