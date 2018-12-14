@@ -3,6 +3,7 @@ angular.module('projecto', [
   'ui.router',
   'signUp',
   'login',
+  'projects',
   'users',
   'ngCookies',
 ])
@@ -34,11 +35,19 @@ angular.module('projecto', [
     resolve: { authenticate: authenticate }
   }
 
+  var projectsState = {
+    name: 'projects',
+    url: '/projects',
+    component: 'projects',
+    resolve: { authenticate: authenticate }
+  }
+
   $stateProvider.state(loginState);
   $stateProvider.state(signUpState);
   $stateProvider.state(homeState);
   $stateProvider.state(usersState);
-  $locationProvider.html5Mode({enabled: true, requireBase: false});
+  $stateProvider.state(projectsState);
+  // $locationProvider.html5Mode({enabled: true, requireBase: false});
 
   function authenticate($q, Auth, $state, $timeout) {
     if (Auth.isLoggedIn()) {

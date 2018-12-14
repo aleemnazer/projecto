@@ -10,6 +10,7 @@ var userSchema = new Schema({
     salt: { type: String },
     hash: { type: String },
     token: { type: String },
+    projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }]
 })
 
 userSchema.statics.findAll = function(){

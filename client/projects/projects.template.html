@@ -1,0 +1,11 @@
+<dev>
+    <h1> List of Projects</h1>
+    <h3> {{ error }}</h3>
+    <ul>
+        <li ng-repeat="project in projects">
+            <strong> title: </strong> <span> {{ project.title }} </span>,
+            <strong> description: </strong> <span> {{ project.description }} </span>,
+            <strong> Creator: </strong> <span> {{ project.creator[0].name }} </span>
+        </li>
+    </ul>
+</dev>

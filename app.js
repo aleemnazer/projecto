@@ -4,11 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/projecto', { useNewUrlParser: true});
+mongoose.connect('mongodb://localhost/projecto-dev', { useNewUrlParser: true});
 
 var indexRouter = require('./server/routes/index');
 var usersRouter = require('./server/routes/users');
-
+var projectRouter = require('./server/routes/projects');
 var app = express();
 
 app.use(logger('dev'));
@@ -24,6 +24,7 @@ app.use(function(req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/projects', projectRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
