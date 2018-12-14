@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.model');
+var passport = require('../passport');
 
 router.get('/', function(req, res, next) {
   res.render('../../client/app/index.html');
@@ -9,14 +10,18 @@ router.get('/', function(req, res, next) {
 router.post('/signup', function(req, res, next){
   username = req.body.username;
   if (username == "undefined" || username == null )
-    return next('username is missing');
+    return next({ message: 'username is missing'});
 
   password = req.body.password;
   if (password == "undefined" || password == null )
-    return next('password is missing');
+    return next({message: 'password is missing'});
 
-  User.createUser(req.body).then(user => res.send({ message: "signed up successfully" })).catch(err => res.send(err));
-})
+  User.createUser(req.body).then(user => res.send({ message: "signed up successfully" })).catch(err => next(err));
+});
+
+router.post('/logout', passport.authenticate('bearer', { session: false }), function(req, res, next) {
+  User.logout(req.user._id).then(user => res.send('')).catch(err => next(err));
+});
 
 router.post('/login',
   function(req, res, next) {
@@ -36,8 +41,8 @@ router.post('/login',
       user.setToken();
       res.send({message: user.getToken()});
     }).catch(function(err){
-      errs = { error: 'an error occured' + err}
-      res.send(errs);
+      error_message = { error: 'an error occured' + err}
+      next(error_message);
     });
 });
 module.exports = router;

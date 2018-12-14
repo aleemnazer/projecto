@@ -32,6 +32,10 @@ userSchema.statics.userDetails = function(id){
     return  this.findOne({_id: id}).populate('creator').exec();
 }
 
+userSchema.statics.logout = function(id){
+    return this.findOneAndUpdate(id, { $set: {token: ''} }).exec();
+}
+
 userSchema.statics.updateUser = function(id, params){
     return this.findOneAndUpdate(id, { $set: params }).exec();
 }

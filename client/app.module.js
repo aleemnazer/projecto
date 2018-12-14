@@ -14,6 +14,13 @@ angular.module('projecto', [
     component: 'login'
   }
 
+  var logoutState = {
+    name: 'logout',
+    url: '/logout',
+    controller: 'logoutController',
+    template: '<button ng-click = "logout()">Logout</button>'
+  }
+
   var signUpState = {
     name: 'signup',
     url: '/sign-up',
@@ -42,11 +49,21 @@ angular.module('projecto', [
     resolve: { authenticate: authenticate }
   }
 
+  var newprojectsState = {
+    name: 'newproject',
+    url: '/newproject',
+    controller: 'newProject',
+    templateUrl: './projects/newproject.template.html',
+    resolve: { authenticate: authenticate }
+  }
+
   $stateProvider.state(loginState);
   $stateProvider.state(signUpState);
   $stateProvider.state(homeState);
   $stateProvider.state(usersState);
   $stateProvider.state(projectsState);
+  $stateProvider.state(newprojectsState);
+  $stateProvider.state(logoutState);
   // $locationProvider.html5Mode({enabled: true, requireBase: false});
 
   function authenticate($q, Auth, $state, $timeout) {

@@ -12,18 +12,10 @@ projectSchema.statics.findAll = function(user){
     return this.find({creator: user._id}).populate('creator');
 }
 
-projectSchema.statics.createProject = function(project){
+projectSchema.statics.createProject = function(project, userId){
     var new_project = new this(project);
-    this.pushToCreator(new_project);
+    new_project.creator = userId;
     return new_project.save();
-}
-
-projectSchema.statics.pushToCreator = function(project){
-    promise = User.findById(project.creator).exec();
-    promise.then(function(user){
-        user.projects.push(project);
-        user.save();
-    });
 }
 
 projectSchema.statics.removeProject = function(id){

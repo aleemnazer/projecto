@@ -8,7 +8,10 @@ router.get('/', passport.authenticate('bearer', { session: false }), function(re
 });
 
 router.post('/', passport.authenticate('bearer', { session: false }), function(req, res, next) {
-    Project.createProject(req.body, req.params.user_id).then(project => res.send(project)).catch(err => res.send(err));
+  title = req.body.title
+  if (title == "undefined" || title == null )
+    return next('Title is missing');
+  Project.createProject(req.body, req.user._id).then(project => res.send(project)).catch(err => res.send(err));
 });
 
 router.get('/:id', passport.authenticate('bearer', { session: false }), function(req, res, next){

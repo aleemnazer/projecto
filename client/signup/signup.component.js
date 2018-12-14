@@ -13,8 +13,9 @@ angular.
         })
         .then(function(response) {
           $scope.message = response.data.message;
+          $state.go('login')
         }, function(error){
-          $scope.message = error.data.error;
+          $scope.message = error.data.error.message;
         });
       }
     }
