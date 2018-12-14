@@ -22,11 +22,23 @@ angular.module('projecto', [
     name: 'home',
     url: '/',
     cache: false,
-    template: '<h1> welcome user </h1>'
+    template: '<h1> welcome user </h1>',
+    resolve: { authenticate: authenticate }
   }
 
   $stateProvider.state(loginState);
   $stateProvider.state(signUpState);
   $stateProvider.state(homeState);
   $locationProvider.html5Mode({enabled: true, requireBase: false});
+
+  function authenticate($q, Auth, $state, $timeout) {
+    if (Auth.isLoggedIn()) {
+      return $q.when()
+    } else {
+      $timeout(function() {
+        $state.go('login')
+      });
+      return $q.reject()
+    }
+  }
 });

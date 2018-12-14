@@ -14,6 +14,8 @@ angular.
         })
         .then(function(response) {
           $scope.message = response.data.message;
+        }, function(error){
+          $scope.message = error.data.error;
         });
       }
     }

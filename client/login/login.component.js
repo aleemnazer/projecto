@@ -14,7 +14,10 @@ angular.module('login')
                     token = response.data.message;
                     Auth.setToken(token);
                     $scope.token = Auth.getToken();
+                }, function(error){
+                    Auth.setToken('');
+                    $scope.token = error.data.message;
                 });
             }
         }
-    })
+    });
