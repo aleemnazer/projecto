@@ -12,14 +12,14 @@
 
 <div>
     <md-tabs>
-        <md-tab label="Comment">
-            <p>Comments...</p>
+        <md-tab label="Comment" ui-sref="projects.tab1" ui-sref-active="active">
+            <ui-view></ui-view>
         </md-tab>
-        <md-tab label="History">
-            <p>History...</p>
+        <md-tab label="History" ui-sref="projects.tab2" ui-sref-active="active">
+            <ui-view></ui-view>
         </md-tab>
-        <md-tab label="Follower">
-            <p>Followers.</p>
+        <md-tab label="Follower" ui-sref="projects.tab3" ui-sref-active="active">
+            <ui-view></ui-view>
         </md-tab>
     </md-tabs>
 </div>
