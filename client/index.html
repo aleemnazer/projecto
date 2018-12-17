@@ -27,7 +27,6 @@
     <base href="/">
   </head>
   <body ng-controller="homeController">
-    {{ isLoggedIn()}} value of authenticate
     <div ng-show=!isLoggedIn()>
       <a ui-sref="login" ui-sref-active="active">Login</a>
       <a ui-sref="signup" ui-sref-active="active">SignUp</a>
