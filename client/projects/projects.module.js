@@ -1,1 +1,1 @@
-angular.module('projects', []);
+angular.module('projects', ['ngMaterial']);

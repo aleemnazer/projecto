@@ -3,6 +3,14 @@ angular.
     component('users', {
         templateUrl: 'users/users.template.html',
         controller: function usersController($http, $scope, Auth, $state){
+            $scope.tab = 1
+            $scope.isSet = function(tab){
+                return $scope.tab == tab;
+            }
+
+            $scope.setTab = function(tab){
+                $scope.tab = tab;
+            }
             $http({
                     method: 'GET',
                     url: 'http://localhost:3000/users',
