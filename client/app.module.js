@@ -11,20 +11,27 @@ angular.module('projecto', [
   var loginState = {
     name: 'login',
     url: '/login',
-    component: 'login'
+    component: 'login',
+    resolve: {
+      authenticate: skipIfAuthenticated
+    }
   }
 
   var logoutState = {
     name: 'logout',
     url: '/logout',
     controller: 'logoutController',
+    resolve: { authenticate: authenticate },
     template: '<button ng-click = "logout()">Logout</button>'
   }
 
   var signUpState = {
     name: 'signup',
     url: '/sign-up',
-    component: 'signUp'
+    component: 'signUp',
+    resolve: {
+      authenticate: skipIfAuthenticated
+    }
   }
 
   var homeState = {
@@ -37,17 +44,20 @@ angular.module('projecto', [
   var tab1State = {
     name: 'home.tab1',
     url: '/tab1',
+    resolve: { authenticate: authenticate },
     template: '<p> Comments... </p>',
   }
   var tab2State = {
     name: 'home.tab2',
     url: '/tab2',
+    resolve: { authenticate: authenticate },
     template: '<p> History... </p>',
   }
 
   var tab3State = {
     name: 'home.tab3',
     url: '/tab3',
+    resolve: { authenticate: authenticate },
     template: '<p> Followers... </p>'
   }
 
@@ -69,18 +79,21 @@ angular.module('projecto', [
     name: 'projects.tab1',
     url: '/comments',
     template: '<p> Project Comments... </p>',
+    resolve: { authenticate: authenticate },
   }
 
   var projectTab2State = {
     name: 'projects.tab2',
     url: '/history',
     template: '<p> Project History... </p>',
+    resolve: { authenticate: authenticate },
   }
 
   var projectTab3State = {
     name: 'projects.tab3',
     url: '/followers',
     template: '<p> Project Follower... </p>',
+    resolve: { authenticate: authenticate },
   }
 
   var newprojectsState = {
@@ -106,6 +119,14 @@ angular.module('projecto', [
   $stateProvider.state(logoutState);
   $locationProvider.html5Mode({enabled: true, requireBase: false});
 
+  function skipIfAuthenticated($q, Auth) {
+    if (Auth.isLoggedIn()) {
+      return $q.reject()
+    } else {
+      $q.resolve()
+    }
+    return $q.promise;
+  }
   function authenticate($q, Auth, $state, $timeout) {
     if (Auth.isLoggedIn()) {
       return $q.when()
@@ -116,4 +137,8 @@ angular.module('projecto', [
       return $q.reject()
     }
   }
-});
+}).controller('homeController',function($scope,$state,Auth){
+   $scope.isLoggedIn = function(){
+    return Auth.isLoggedIn();
+    };
+}); ;

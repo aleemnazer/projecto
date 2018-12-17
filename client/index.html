@@ -24,15 +24,21 @@
     <script src="services/auth.service.js"></script>
     <script src="projects/newproject.controller.js"></script>
     <script src="login/logout.controler.js"></script>
+    <base href="/">
   </head>
-  <body>      
-    <a ui-sref="login" ui-sref-active="active">Login</a>
-    <a ui-sref="signup" ui-sref-active="active">SignUp</a>
-    <a ui-sref="home" ui-sref-active="active">Home</a>
-    <a ui-sref="users" ui-sref-active="active">Users</a>
-    <a ui-sref="projects" ui-sref-active="active">Projects</a>
-    <a ui-sref="newproject" ui-sref-active="active">New Projects</a>
-    <a ui-sref="logout" ui-sref-active="active">Logout</a>
+  <body ng-controller="homeController">
+    {{ isLoggedIn()}} value of authenticate
+    <div ng-show=!isLoggedIn()>
+      <a ui-sref="login" ui-sref-active="active">Login</a>
+      <a ui-sref="signup" ui-sref-active="active">SignUp</a>
+    </div>
+    <div ng-show=isLoggedIn()>
+      <a ui-sref="home" ui-sref-active="active">Home</a>
+      <a ui-sref="users" ui-sref-active="active">Users</a>
+      <a ui-sref="projects" ui-sref-active="active">Projects</a>
+      <a ui-sref="newproject" ui-sref-active="active">New Projects</a>
+      <a ui-sref="logout" ui-sref-active="active">Logout</a>
+    </div>
     <div class="container">
         <div class="row">
           <div class="col-md-10">
