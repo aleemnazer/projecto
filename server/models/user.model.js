@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
     name: { type: String, required: true },
     role: { type: String, required: true },
-    username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
     salt: { type: String },
     hash: { type: String },
     token: { type: String },
@@ -20,7 +20,7 @@ userSchema.statics.findAll = function(query = {}){
 userSchema.statics.createUser = function(user){
     newUser = new this(user);
     newUser.setPassword(user.password);
-    newUser.role = 'user';
+    newUser.role = 'admin';
     return newUser.save();
 }
 

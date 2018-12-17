@@ -2,7 +2,7 @@
 <h1>Sign Up Form</h1>
 <p>Please fill in this form to create an account.</p>
 <hr>
-<form>
+<form name="signupForm">
   <div class="form-group">
     <div class="row">
       <div class="col-md-6">
@@ -15,10 +15,11 @@
 
     <div class="row">
       <div class="col-md-6">
-        Enter username:
+        Enter email:
       </div>
       <div class="col-md-6">
-        <input name = "username" type = "text" ng-model = "username" required>
+        <input name = "email" type = "email" ng-model = "email" required>
+        <span ng-show="signupForm.email.$error.email"> Invalid email</span>
       </div>
     </div>
     <div class="row">
@@ -33,7 +34,7 @@
       <div class="col-md-6">
       </div>
       <div class="col-md-6">
-        <button ng-click = "signup()">Submit</button>
+        <button ng-disabled="signupForm.email.$dirty && signupForm.email.$invalid"  ng-click = "signup()">Submit</button>
         <br>
         {{ message && ('message: ' + message)}}
       </div>

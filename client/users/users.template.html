@@ -1,11 +1,16 @@
 <dev>
     <h1> List of users</h1>
     <h3> {{ error }}</h3>
-    <ul>
-        <li ng-repeat="user in users">
-            <strong> username: </strong> <span> {{ user.username }} </span>,
-            <strong> name: </strong> <span> {{ user.name }} </span>,
-            <strong> role: </strong> <span> {{ user.role }} </span>
-        </li>
-    </ul>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+        <tr ng-repeat="user in users">
+            <td> {{ user.name }} </td>
+            <td> {{ user.email }} </td>
+            <td> {{ user.role }} </td>
+        </tr>
+    </table>
 </dev>

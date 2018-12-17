@@ -8,7 +8,7 @@ angular.module('login')
                 $http({
                     url: url,
                     method: "POST",
-                    data: 'username='+$scope.username+'&password='+$scope.password
+                    data: 'email='+$scope.email+'&password='+$scope.password
                 })
                 .then(function(response) {
                     token = response.data.message;

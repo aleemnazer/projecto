@@ -8,9 +8,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/signup', function(req, res, next){
-  username = req.body.username;
-  if (username == "undefined" || username == null )
-    return next({ message: 'username is missing'});
+  email = req.body.email;
+  if (email == "undefined" || email == null )
+    return next({ message: 'email is missing'});
 
   password = req.body.password;
   if (password == "undefined" || password == null )
@@ -25,15 +25,15 @@ router.post('/logout', passport.authenticate('bearer', { session: false }), func
 
 router.post('/login',
   function(req, res, next) {
-    username = req.body.username;
-    if (username == "undefined" || username == null )
-      return next('username is missing');
+    email = req.body.email;
+    if (email == "undefined" || email == null )
+      return next('email is missing');
 
     password = req.body.password;
     if (password == "undefined" || password == null )
       return next('password is missing');
 
-    User.findOne({ username: username })
+    User.findOne({ email: email })
     .then(function (user) {
       if (user == null) { return next('user name of password is incorrect');}
       verified = user.verifyPassword(password);
