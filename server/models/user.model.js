@@ -20,7 +20,7 @@ userSchema.statics.findAll = function(query = {}){
 userSchema.statics.createUser = function(user){
     newUser = new this(user);
     newUser.setPassword(user.password);
-    newUser.role = 'admin';
+    newUser.role = 'user';
     return newUser.save();
 }
 

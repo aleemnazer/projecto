@@ -27,18 +27,20 @@
     <base href="/">
   </head>
   <body ng-controller="homeController">
-    <div ng-show=!isLoggedIn()>
-      <a ui-sref="login" ui-sref-active="active">Login</a>
-      <a ui-sref="signup" ui-sref-active="active">SignUp</a>
+    <div class="navbar navbar-default">
+      <ul ng-show=!isLoggedIn() class="nav navbar-nav pull-right">
+        <li><a ui-sref="login" ui-sref-active="active">Login</a></li>
+        <li><a ui-sref="signup" ui-sref-active="active">SignUp</a></li>
+      </ul>
+      <ul ng-show=isLoggedIn() class="nav navbar-nav">
+        <li><a ui-sref="home" ui-sref-active="active">Home</a></li>
+        <li><a ui-sref="users" ui-sref-active="active">Users</a></li>
+        <li><a ui-sref="projects" ui-sref-active="active">Projects</a></li>
+        <li><a ui-sref="newproject" ui-sref-active="active">New Projects</a></li>
+        <li><a ui-sref="logout" ui-sref-active="active">Logout</a></li>
+      </ul>
     </div>
-    <div ng-show=isLoggedIn()>
-      <a ui-sref="home" ui-sref-active="active">Home</a>
-      <a ui-sref="users" ui-sref-active="active">Users</a>
-      <a ui-sref="projects" ui-sref-active="active">Projects</a>
-      <a ui-sref="newproject" ui-sref-active="active">New Projects</a>
-      <a ui-sref="logout" ui-sref-active="active">Logout</a>
-    </div>
-    <div class="container">
+      <div class="container">
         <div class="row">
           <div class="col-md-10">
             <ui-view></ui-view>         
