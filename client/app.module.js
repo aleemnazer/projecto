@@ -43,20 +43,20 @@ angular.module('projecto', [
   }
   var tab1State = {
     name: 'home.tab1',
-    url: '/tab1',
+    url: 'home/tab1',
     resolve: { authenticate: authenticate },
     template: '<p> Comments... </p>',
   }
   var tab2State = {
     name: 'home.tab2',
-    url: '/tab2',
+    url: 'home/tab2',
     resolve: { authenticate: authenticate },
     template: '<p> History... </p>',
   }
 
   var tab3State = {
     name: 'home.tab3',
-    url: '/tab3',
+    url: 'home/tab3',
     resolve: { authenticate: authenticate },
     template: '<p> Followers... </p>'
   }

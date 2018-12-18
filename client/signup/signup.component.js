@@ -5,7 +5,7 @@ angular.
     controller: function signupController($http, $scope, $state) {
       $scope.signup = function() {
         $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-        url = "http://localhost:3000/signup"
+        url = "http://localhost:3000/api/signup"
         $http({
           url: url,
           method: "POST",

@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 var crypto = require('crypto');
 var Schema = mongoose.Schema;
+const error = require('http-errors-promise');
 
 var userSchema = new Schema({
     name: { type: String, required: true },
@@ -18,10 +19,20 @@ userSchema.statics.findAll = function(query = {}){
 }
 
 userSchema.statics.createUser = function(user){
+    email = user.email;
+    if (email == "undefined" || email == null )
+      return error(null, 'email is missing', 400);
+
+    password = user.password;
+    if (password == "undefined" || password == null )
+      return error(null, 'password is missing', 400);
+
     newUser = new this(user);
     newUser.setPassword(user.password);
     newUser.role = 'user';
-    return newUser.save();
+    return newUser.save().catch(function(err){
+        return error(err, 'error in saving db', 500);
+    });
 }
 
 userSchema.statics.removeUser = function(id){

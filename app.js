@@ -22,10 +22,12 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/projects', projectRouter);
-
+app.use('/api', indexRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/projects', projectRouter);
+app.get('*', function(req, res) {
+  res.sendfile('./client/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

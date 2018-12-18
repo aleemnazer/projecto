@@ -5,7 +5,7 @@ angular.
         controller: function projectsController($http, $scope, Auth, $state){
             $http({
                     method: 'GET',
-                    url: 'http://localhost:3000/projects',
+                    url: 'http://localhost:3000/api/projects',
                     headers: { Authorization: 'Bearer '+ Auth.getToken() }
                 }).
                 then(function(projects){

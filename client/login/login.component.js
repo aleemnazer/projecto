@@ -4,7 +4,7 @@ angular.module('login')
         controller: function loginController($http, $scope, Auth, $state){
             $scope.login = function(){
                 $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-                url = "http://localhost:3000/login"
+                url = "http://localhost:3000/api/login"
                 $http({
                     url: url,
                     method: "POST",

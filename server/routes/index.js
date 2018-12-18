@@ -2,21 +2,16 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user.model');
 var passport = require('../passport');
+const error = require('http-errors-promise');
 
 router.get('/', function(req, res, next) {
   res.render('../../client/app/index.html');
 });
 
 router.post('/signup', function(req, res, next){
-  email = req.body.email;
-  if (email == "undefined" || email == null )
-    return next({ message: 'email is missing'});
-
-  password = req.body.password;
-  if (password == "undefined" || password == null )
-    return next({message: 'password is missing'});
-
-  User.createUser(req.body).then(user => res.send({ message: "signed up successfully" })).catch(err => next(err));
+  User.createUser(req.body).then(user => res.send({ message: "signed up successfully" })).catch(function(err){
+    error.respond(res, err, 'generl error in signup');
+  });
 });
 
 router.post('/logout', passport.authenticate('bearer', { session: false }), function(req, res, next) {

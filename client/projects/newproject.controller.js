@@ -2,7 +2,7 @@ angular.module('projects').controller('newProject', function($scope, $http, Auth
     $scope.create =  function(){
         $http({
             method: 'POST', 
-            url: 'http://localhost:3000/projects',
+            url: 'http://localhost:3000/api/projects',
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
                 "Authorization": "Bearer "+ Auth.getToken() },

@@ -13,7 +13,7 @@ angular.
             }
             $http({
                     method: 'GET',
-                    url: 'http://localhost:3000/users',
+                    url: 'http://localhost:3000/api/users',
                     headers: { Authorization: 'Bearer '+ Auth.getToken() }
                 }).
                 then(function(users){
